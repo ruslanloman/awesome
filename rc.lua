@@ -9,6 +9,7 @@ require("naughty")
 
 -- Load Debian menu entries
 require("debian.menu")
+vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -99,7 +100,12 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+-- mytextclock = awful.widget.textclock({ align = "right" })
+
+--------------create digital clock widge
+datewidget = widget({ type = "textbox" })
+vicious.register(datewidget, vicious.widgets.date, "%b %d, %R", 60)
+----------------------------------------
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -179,7 +185,7 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        datewidget,
+        s == 1 and datewidget or nil,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
