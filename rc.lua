@@ -1,3 +1,5 @@
+-- my awesome config for version 3.4--
+-- be attention for 2 screen
 -- Standard awesome library
 require("awful")
 require("awful.autofocus")
